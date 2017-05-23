@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+ 
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta> 
+ 
+<title>Jacobs et al.: Impact of variance components on reliability of absolute quantification using digital PCR</title> 
+<meta name="author" content="Bart KM Jacobs, Els Goetghebeur, Lieven Clement, Stijn Verdonck en Femke Cardoen"></meta> 
+ 
+<meta name="description" content="Mini-website "></meta> 
+<meta name="keywords" content="digital PCR, dPCR, ddPCR, absolute nucleic acid quantification, CNV, variance component, precision, accuracy, reliability, experimental design, polymerase chain reaction"></meta> 
+<meta name="robots" content="index,follow"></meta> 
+ 
+ 
+<head> 
+ 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+ 
+<script> 
+function figDef(){ 
+	document.getElementById("figContainer").innerHTML = '<img src="RES/RES1141B.png">'; 
+}; 
+</script> 
+ 
+<style> 
+body	{width: 1084px; margin: 20px auto; /* center */ 
+padding: 15px 2px 0 2px; 
+border: 1px solid black; 
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+} 
+ 
+img {max-width: 100%; 
+    max-height: 100%; 
+    margin: 0;} 
+ 
+p   {margin: 0; 
+text-align: center; 
+padding-bottom: 7px; 
+font-size: 12pt;} 
+ 
+#footer {margin: 0; 
+padding-bottom: 2px; 
+padding-left: 2px; 
+font-size: 8pt; 
+} 
+ 
+#header {margin: 0; 
+padding-bottom: 7px; 
+text-align: center; 
+font-size: 18pt; 
+} 
+ 
+#Caption {margin: 0; 
+padding-bottom: 10px; 
+padding-left: 20px; 
+padding-right: 20px; 
+font-size: 10pt; 
+} 
+
+} 
+ 
+#figcontainer {margin: 0;} 
+</style> 
+ 
+</head> 
+ 
+ 
+ 
+<body onload="figDef()"> 
+ 
+	<div id="header"> 
+		Performance of concentration estimators for absolute quantification with digital PCR 
+	</div> 
+ 
+<p> 
+ 
+<font color="0000ff"> <span title="Under the theoretical model, the partition sizes are equal.  In practice, small differences exist which is the most realistic setting. Our tool indicates that large differences in partition size should be avoided by manufacturers: This option leads to a steep increase in bias for high concentrations."> partition size 
+<select id="choicea" onchange="figChange()"> 
+  <option value="1">equal size</option> 
+  <option value="2">small differences</option> 
+  <option value="3">large differences</option> 
+</select> </span></font> 
+ 
+<font color="0000ff"><span title="Pipette error lumps between replicate variability caused by pipette error and sample heterogeneity among other things.  The pooled estimator cannot handle between replicate variability.  The replicate based estimator does correct for pipette error."> pipette error  
+<select id="choiceb" onchange="figChange()"> 
+  <option value="1">0%</option> 
+  <option value="2">1%</option> 
+  <option value="3">2.5%</option> 
+  <option value="4">5%</option> 
+  <option value="5">10%</option> 
+</select></span></font> 
+<font color="0000ff"><span title="Rain appears in most experiments due to many reasons including inhibition, a lack of thermal cycles and primer depletion.  Rain results in misclassification which largely depends on the setting of the treshold.  In the absence of rain, there is only misclassification for the lowest and highest treshold.  When the rain increases, so does the missclassification."> rain 
+<select id="choicec" onchange="figChange()"> 
+  <option value="1">no rain</option> 
+  <option value="2">light rain</option> 
+  <option value="3">heavy rain</option> 
+</select> </span></font> 
+ 
+<font color="0000ff"><span title="The threshold is a user-defined setting.  Increasing the threshold leads to less false positives, but more false negatives and vice versa. When rain is present, misclassification cannot be avoided.  Adapting the threshold can improve the results considerably."> threshold  
+<select id="choiced" onchange="figChange()" value="4"> 
+  <option value="1">7500</option> 
+  <option value="2">7000</option> 
+  <option value="3">6000</option> 
+  <option value="4">5000</option> 
+  <option value="5">4000</option> 
+  <option value="6">3000</option> 
+  <option value="7">2500</option> 
+</select></span></font> 
+ 
+for 1000 simulations</p> 
+ 
+<p> 
+ <div id="figContainer"></div> 
+</p> 
+ 
+    
+<script> 
+function figChange(){ 
+	figName="RES/RES"+document.getElementById("choicea").value+document.getElementById("choiceb").value+document.getElementById("choiced").value+document.getElementById("choicec").value+"B.png"; 
+	document.getElementById("figContainer").innerHTML = "<img src='"+figName+"'>"; 
+} 
+</script> 
+ 
+<script src="jquery.js"></script> 
+ 
+    <script> 
+$(function(){ 
+$('select[value]').each(function(){ 
+$(this).val(this.getAttribute("value")); 
+}); 
+}); 
+    </script> 
+ 
+	<div id="Caption"> 
+This interactive tool compares the performance of two concentration estimators for absolute quantification of Nucleic Acids with dPCR in the presence of technical replicates: the Pooled Estimator (PE) and Replicate based Estimator (RE). The PE (dashed red line) estimates the concentration and variance after pooling the partitions of the technical replicates based on Poisson statistics.  The RE (full green line) consists of the empirical mean and variance of the concentration estimates of the independent replicates. The impact of different sources of variation and modifiable settings in the dPCR workflow are assessed, i.e. <font color="0000ff"> <span title="Under the theoretical model, the partition sizes are equal.  In practice, small differences exist which is the most realistic setting. Our tool indicates that large differences in partition size should be avoided by manufacturers: This option leads to a steep increase in bias for high concentrations."> partition size</span></font>, <font color="0000ff"><span title="Pipette error lumps between replicate variability caused by pipette error and sample heterogeneity among other things.  The pooled estimator cannot handle between replicate variability.  The replicate based estimator does correct for pipette error."> pipette error</span></font>, <font color="0000ff"><span title="Rain appears in most experiments due to many reasons including inhibition, a lack of thermal cycles and primer depletion.  Rain results in misclassification which largely depends on the setting of the treshold.  In the absence of rain, there is only misclassification for the lowest and highest treshold.  When the rain increases, so does the missclassification."> rain</span></font>, and the choice of the <font color="0000ff"><span title="The threshold is a user-defined setting.  Increasing the threshold leads to less false positives, but more false negatives and vice versa. When rain is present, misclassification cannot be avoided.  Adapting the threshold can improve the results considerably."> threshold</span></font> to discriminate between positive and negative partitions. <br/> 
+The top left panel displays an example of typical fluorescence outcomes for a dPCR experiment with 20 000 partitions.  The color represents the density of partitions (color scheme in right axis 1-5 partitions).  The black line indicates the threshold and can be adapted with the dropdown menu. <br/>  
+In the remaining panels results are given relative to the true concentration &lambda;. Hence, the precision and accuracy of different dilutions of the same sample can be compared on the same scale.<br/> 
+The top center panel shows the relative standard deviation estimated by the PE and RE averaged over 1000 simulations.  When pipetting error is present, the pooled method underestimates the standard deviation. <br/> 
+In the top right panel the coverage of 95% confidence intervals for the two methods is given.  The coverage was calculated as the ratio of the number of confidence intervals out of 1000 simulations that contain the true concentration &lambda; divided by the total number of confidence intervals calculated (1000). <br/> 
+The lower left panel shows the relative empirical standard deviation estimated from the results of 1000 simulations for the two methods.  This is calculated by taking the standard deviation of the concentration estimates over the 1000 simulations and gives a better view on the true standard deviation of each method.   
+<br/> 
+In lower center panel the relative bias averaged over 1000 simulations is plotted for each method. <br/> 
+The lower right panel shows the relative RMSE estimated from the results of 1000 simulations for the two methods.  This is estimated as the square root of the sum of the relative variance and squared relative bias.
+	</div> 
+ 
+	<div id="footer"> 
+		&copy;2014 Bart KM Jacobs, Els Goetghebeur and Lieven Clement 
+	</div> 
+ 
+</body> 
